@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="page-title">Destek — Orbis Studio</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050508;
+      --bg-alt: #0d0d12;
+      --surface: #121218;
+      --border: rgba(255,255,255,0.06);
+      --text: #e8e2d6;
+      --muted: #8a8891;
+      --accent: #d4af37;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --container-width: 900px;
+    }
+
+    [lang="en"] .lang-tr,
+    [lang="tr"] .lang-en { display: none !important; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      background: rgba(5,5,8,0.8);
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-alt);
+      padding: 4px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 16px;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .back-link {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .content-area {
+      padding: 80px 0;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 400;
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-top: 56px;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    p, li {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .contact-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 40px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+
+    .email-link {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .faq-item {
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item h3 {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .deletion-box {
+      background: rgba(255, 0, 0, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 32px;
+      border-radius: 8px;
+      margin-top: 40px;
+    }
+
+    footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Orbis<span> Studio</span></a>
+      <div class="nav-right">
+        <a href="index.html" class="back-link lang-tr">← Ana Sayfa</a>
+        <a href="index.html" class="back-link lang-en">← Back Home</a>
+        <div class="lang-switcher">
+          <div class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</div>
+          <div class="lang-btn" id="btn-en" onclick="setLang('en')">EN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="content-area">
+    <p class="label lang-tr">Yardım</p>
+    <p class="label lang-en">Support</p>
+    
+    <h1 class="lang-tr">Size nasıl yardımcı olabiliriz?</h1>
+    <h1 class="lang-en">How can we help you?</h1>
+
+    <div class="contact-card">
+      <p class="lang-tr">Sorularınız, geri bildirimleriniz veya teknik destek talepleriniz için bize e-posta gönderebilirsiniz:</p>
+      <p class="lang-en">For any questions, feedback, or technical support requests, please email us at:</p>
+      <a href="mailto:orbisstudio.app@gmail.com" class="email-link">orbisstudio.app@gmail.com</a>
+      <p style="margin-top: 16px; font-size: 14px;" class="lang-tr">Genellikle 24-48 saat içinde yanıt veriyoruz.</p>
+      <p style="margin-top: 16px; font-size: 14px;" class="lang-en">We usually respond within 24-48 hours.</p>
+    </div>
+
+    <h2 class="lang-tr">Sıkça Sorulan Sorular</h2>
+    <h2 class="lang-en">Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3 class="lang-tr">Aboneliğimi nasıl iptal edebilirim?</h3>
+      <h3 class="lang-en">How can I cancel my subscription?</h3>
+      <p class="lang-tr">Abonelikleriniz Google Play veya App Store hesap ayarlarınız üzerinden yönetilir. İlgili mağazanın "Abonelikler" bölümünden iptal işlemini gerçekleştirebilirsiniz.</p>
+      <p class="lang-en">Subscriptions are managed through your Google Play or App Store account settings. You can cancel from the "Subscriptions" section of the respective store.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3 class="lang-tr">Uygulama çevrimdışı çalışıyor mu?</h3>
+      <h3 class="lang-en">Does the app work offline?</h3>
+      <p class="lang-tr">Uygulamanın Premium sürümünde, içerikleri cihazınıza indirerek çevrimdışı olarak dinleyebilirsiniz. Ücretsiz sürümde içerikleri dinlemek için aktif bir internet bağlantısı gereklidir.</p>
+      <p class="lang-en">In the Premium version of the app, you can download content to your device and listen offline. The free version requires an active internet connection to stream content.</p>
+    </div>
+
+    <div class="deletion-box">
+      <h2 style="margin-top: 0;" class="lang-tr">Veri Silme Talebi</h2>
+      <h2 style="margin-top: 0;" class="lang-en">Data Deletion Request</h2>
+      <p class="lang-tr">Google Play politikaları gereği, kullanıcılarımıza verilerini silme hakkı tanıyoruz. Hesabınızı ve tüm verilerinizi silmek istiyorsanız:</p>
+      <p class="lang-en">In accordance with Google Play policies, we provide users with the right to delete their data. If you wish to delete your account and all associated data:</p>
+      <ol style="color: var(--muted); padding-left: 20px;">
+        <li class="lang-tr"><strong>orbisstudio.app@gmail.com</strong> adresine bir e-posta gönderin.</li>
+        <li class="lang-en">Send an email to <strong>orbisstudio.app@gmail.com</strong>.</li>
+        <li class="lang-tr">Konu satırına "Veri Silme Talebi" yazın.</li>
+        <li class="lang-en">Write "Data Deletion Request" in the subject line.</li>
+        <li class="lang-tr">Mesajınızda kayıtlı e-posta adresinizi belirtin.</li>
+        <li class="lang-en">Include your registered email address in the message.</li>
+      </ol>
+      <p style="margin-top: 16px;" class="lang-tr">Talebiniz alındıktan sonra 7 iş günü içinde hesabınız ve tüm verileriniz kalıcı olarak silinecektir.</p>
+      <p style="margin-top: 16px;" class="lang-en">Your account and all data will be permanently deleted within 7 business days of receiving your request.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p class="lang-tr">© 2025 Orbis Studio. Tüm hakları saklıdır.</p>
+    <p class="lang-en">© 2025 Orbis Studio. All rights reserved.</p>
+    <div style="display: flex; gap: 32px; justify-content: center; margin-top: 16px;">
+      <a href="privacy.html" class="lang-tr">Gizlilik Politikası</a>
+      <a href="privacy.html" class="lang-en">Privacy Policy</a>
+      <a href="terms.html" class="lang-tr">Kullanım Şartları</a>
+      <a href="terms.html" class="lang-en">Terms of Service</a>
+      <a href="support.html" class="lang-tr">Destek</a>
+      <a href="support.html" class="lang-en">Support</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('btn-' + lang).classList.add('active');
+    localStorage.setItem('preferred-lang', lang);
+  }
+  const savedLang = localStorage.getItem('preferred-lang') || 'tr';
+  setLang(savedLang);
+</script>
+</body>
+</html>
