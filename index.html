@@ -1,1 +1,586 @@
-<h1>Orbis Studio</h1>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="page-title">Orbis Studio — Dijital Ürünler & Mobil Uygulamalar</title>
+  <meta name="description" content="Orbis Studio — İstanbul merkezli bağımsız yazılım stüdyosu.">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050508;
+      --bg-alt: #0d0d12;
+      --surface: #121218;
+      --border: rgba(255,255,255,0.06);
+      --text: #e8e2d6;
+      --muted: #8a8891;
+      --accent: #d4af37;
+      --accent-soft: rgba(212, 175, 55, 0.1);
+      --glow: rgba(100, 100, 255, 0.05);
+      --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      --container-width: 1200px;
+    }
+
+    [lang="en"] .lang-tr,
+    [lang="tr"] .lang-en { display: none !important; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Background Effects - Full Screen */
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .blob {
+      position: absolute;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+      filter: blur(100px);
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+    .blob-1 { top: -20%; left: -10%; background: radial-gradient(circle, rgba(147, 112, 219, 0.07) 0%, transparent 70%); }
+    .blob-2 { bottom: -20%; right: -10%; background: radial-gradient(circle, rgba(212, 175, 55, 0.04) 0%, transparent 70%); }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.3;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 24px 0;
+      transition: var(--transition);
+    }
+    nav.scrolled {
+      background: rgba(5,5,8,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .logo span { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-alt);
+      padding: 4px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 16px;
+      transition: var(--transition);
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    nav a.contact-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    nav a.contact-link:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 em { font-style: italic; }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
+    }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--accent);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 64px;
+    }
+
+    /* PRODUCTS */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .app-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 48px;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .app-card:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .app-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+    .app-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .app-info p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 500px;
+      line-height: 1.8;
+    }
+
+    .app-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    .tag {
+      padding: 4px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ABOUT */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: flex-start;
+    }
+    .about-text p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 24px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .stat-item {
+      background: var(--bg);
+      padding: 40px;
+      text-align: left;
+    }
+    .stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+    .contact-block {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-email {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 24px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 4px;
+      transition: var(--transition);
+    }
+    .contact-email:hover { border-color: var(--accent); }
+
+    /* FOOTER */
+    footer {
+      padding: 48px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+    @media (max-width: 992px) {
+      .app-card { grid-template-columns: 100px 1fr; gap: 32px; }
+      .app-meta { grid-column: 1 / -1; flex-direction: row; align-items: center; margin-top: 16px; }
+      .about-content { grid-template-columns: 1fr; gap: 64px; }
+    }
+    @media (max-width: 640px) {
+      .hero-cta { flex-direction: column; }
+      .container { padding: 0 24px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+      .stat-item { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+</div>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo">Orbis<span> Studio</span></a>
+      <div class="nav-right">
+        <a href="mailto:orbisstudio.app@gmail.com" class="contact-link lang-tr">İletişim</a>
+        <a href="mailto:orbisstudio.app@gmail.com" class="contact-link lang-en">Contact</a>
+        <div class="lang-switcher">
+          <div class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</div>
+          <div class="lang-btn" id="btn-en" onclick="setLang('en')">EN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow lang-tr">Orbis Studio — İstanbul</span>
+      <span class="hero-eyebrow lang-en">Orbis Studio — Istanbul</span>
+      
+      <h1 class="lang-tr"><em>Özenle</em> tasarlanmış<br>dijital ürünler</h1>
+      <h1 class="lang-en">Crafting <em>thoughtful</em><br>digital products</h1>
+      
+      <p class="hero-sub lang-tr">Günlük hayatı biraz daha basit, akıllı ve keyifli hale getiren mobil uygulamalar ve dijital araçlar geliştiriyoruz.</p>
+      <p class="hero-sub lang-en">We build mobile applications and digital tools that make everyday life a little simpler, smarter, and more enjoyable.</p>
+      
+      <div class="hero-cta">
+        <a href="#products" class="btn btn-primary lang-tr">Ürünlerimiz</a>
+        <a href="#products" class="btn btn-primary lang-en">Our Products</a>
+        <a href="#contact" class="btn btn-ghost lang-tr">İletişime Geç</a>
+        <a href="#contact" class="btn btn-ghost lang-en">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="reveal">
+      <p class="section-label lang-tr">Ürünler</p>
+      <p class="section-label lang-en">Products</p>
+      <h2 class="section-title lang-tr">Neler Yapıyoruz</h2>
+      <h2 class="section-title lang-en">What we build</h2>
+    </div>
+
+    <div class="apps-grid">
+      <!-- LUNIVA -->
+      <div class="app-card reveal">
+        <div class="app-icon">
+          <img src="icon.png" alt="Luniva Icon">
+        </div>
+        <div class="app-info">
+          <h3>Luniva</h3>
+          <p class="lang-tr">Bebekler ve yürümeye başlayan çocuklar için nazik bir uyku arkadaşı. Sakinleştirici ninniler, ortam sesleri ve uyku öncesi hikayeleri.</p>
+          <p class="lang-en">A gentle sleep companion for babies and toddlers. Soothing lullabies, ambient sounds, and bedtime stories.</p>
+        </div>
+        <div class="app-meta">
+          <span class="tag">iOS & Android</span>
+          <span class="tag lang-tr">Bebek & Çocuk</span>
+          <span class="tag lang-en">Baby & Kids</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-content">
+      <div class="about-text reveal">
+        <p class="section-label lang-tr">Hakkımızda</p>
+        <p class="section-label lang-en">About</p>
+        <h2 class="section-title lang-tr">Küçük ekip,<br><em>büyük özen</em></h2>
+        <h2 class="section-title lang-en">Small team,<br><em>big care</em></h2>
+        
+        <p class="lang-tr">Orbis Studio, İstanbul merkezli bağımsız bir yazılım stüdyosudur. Temiz ve amaç odaklı dijital ürünler geliştirmeye odaklanıyoruz.</p>
+        <p class="lang-en">Orbis Studio is an independent software studio based in Istanbul, Turkey. We focus on building clean, purposeful digital products.</p>
+        
+        <p class="lang-tr">En iyi yazılımın, fark etmediğiniz yazılım olduğuna inanıyoruz: Sadece çalışır, yolunuzdan çekilir ve gününüze değer katar.</p>
+        <p class="lang-en">We believe the best software is the kind you barely notice: it just works, stays out of your way, and adds value to your day.</p>
+      </div>
+      
+      <div class="stats-grid reveal">
+        <div class="stat-item">
+          <div class="stat-val">1</div>
+          <div class="stat-label lang-tr">Ürün</div>
+          <div class="stat-label lang-en">Product</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">TR</div>
+          <div class="stat-label lang-tr">İstanbul</div>
+          <div class="stat-label lang-en">Istanbul</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">∞</div>
+          <div class="stat-label lang-tr">Reklamsız</div>
+          <div class="stat-label lang-en">Ad-free</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">24+</div>
+          <div class="stat-label lang-tr">Aylık Deneyim</div>
+          <div class="stat-label lang-en">Months Exp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-block">
+    <div class="reveal">
+      <p class="section-label lang-tr">İletişim</p>
+      <p class="section-label lang-en">Contact</p>
+      <h2 class="section-title lang-tr">Bizimle Konuşun</h2>
+      <h2 class="section-title lang-en">Let's talk</h2>
+      
+      <p style="color: var(--muted); font-size: 17px; max-width: 400px;" class="lang-tr">Uygulamalarımız hakkında bir sorunuz mu var, yoksa sadece merhaba mı demek istiyorsunuz?</p>
+      <p style="color: var(--muted); font-size: 17px; max-width: 400px;" class="lang-en">Have a question about our apps, a collaboration idea, or just want to say hello?</p>
+      
+      <a href="mailto:orbisstudio.app@gmail.com" class="contact-email">orbisstudio.app@gmail.com</a>
+    </div>
+  </section>
+
+  <footer>
+    <p class="lang-tr">© 2025 Orbis Studio. Tüm hakları saklıdır.</p>
+    <p class="lang-en">© 2025 Orbis Studio. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="privacy.html" class="lang-tr">Gizlilik Politikası</a>
+      <a href="privacy.html" class="lang-en">Privacy Policy</a>
+      <a href="terms.html" class="lang-tr">Kullanım Şartları</a>
+      <a href="terms.html" class="lang-en">Terms of Service</a>
+      <a href="support.html" class="lang-tr">Destek</a>
+      <a href="support.html" class="lang-en">Support</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Language Logic
+  const titles = {
+    tr: "Orbis Studio — Dijital Ürünler & Mobil Uygulamalar",
+    en: "Orbis Studio — Digital Products & Mobile Apps"
+  };
+
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.title = titles[lang];
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('btn-' + lang).classList.add('active');
+    
+    localStorage.setItem('preferred-lang', lang);
+  }
+
+  const savedLang = localStorage.getItem('preferred-lang') || 'tr';
+  setLang(savedLang);
+
+  // Nav Scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on Scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
