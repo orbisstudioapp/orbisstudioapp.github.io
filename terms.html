@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="page-title">Kullanım Şartları — Orbis Studio</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050508;
+      --bg-alt: #0d0d12;
+      --surface: #121218;
+      --border: rgba(255,255,255,0.06);
+      --text: #e8e2d6;
+      --muted: #8a8891;
+      --accent: #d4af37;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --container-width: 900px;
+    }
+
+    [lang="en"] .lang-tr,
+    [lang="tr"] .lang-en { display: none !important; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      background: rgba(5,5,8,0.8);
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-alt);
+      padding: 4px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 16px;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .back-link {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .content-area {
+      padding: 80px 0;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .date {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 64px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-top: 56px;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    p, li {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    ul {
+      padding-left: 24px;
+      margin-bottom: 24px;
+    }
+
+    li { margin-bottom: 12px; }
+    strong { color: var(--text); font-weight: 500; }
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+
+    footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Orbis<span> Studio</span></a>
+      <div class="nav-right">
+        <a href="index.html" class="back-link lang-tr">← Ana Sayfa</a>
+        <a href="index.html" class="back-link lang-en">← Back Home</a>
+        <div class="lang-switcher">
+          <div class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</div>
+          <div class="lang-btn" id="btn-en" onclick="setLang('en')">EN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="content-area">
+    <p class="label lang-tr">Yasal</p>
+    <p class="label lang-en">Legal</p>
+    
+    <h1 class="lang-tr">Kullanım Şartları</h1>
+    <h1 class="lang-en">Terms of Service</h1>
+    
+    <p class="date lang-tr">Son güncelleme: 1 Ocak 2025</p>
+    <p class="date lang-en">Last updated: January 1, 2025</p>
+
+    <div class="lang-tr">
+      <p>Orbis Studio tarafından sunulan hizmetleri kullanarak aşağıdaki şartları kabul etmiş sayılırsınız.</p>
+      
+      <h2>1. Hizmet Kullanımı</h2>
+      <p>Uygulamalarımızı yasal amaçlar doğrultusunda kullanmayı taahhüt edersiniz. Hizmetlerimize zarar verecek her türlü eylemden kaçınmalısınız.</p>
+      
+      <h2>2. Abonelikler ve Ödemeler</h2>
+      <p>Premium özellikler için yapılan ödemeler Google Play veya Apple App Store üzerinden gerçekleşir. İade ve iptal işlemleri ilgili mağazanın politikalarına tabidir.</p>
+      
+      <h2>3. Sorumluluk Sınırı</h2>
+      <p>Hizmetlerimizi "olduğu gibi" sunuyoruz. Uygulamanın kullanımından doğabilecek dolaylı zararlardan Orbis Studio sorumlu tutulamaz.</p>
+      
+      <h2>4. Değişiklikler</h2>
+      <p>Bu şartları zaman zaman güncelleme hakkımız saklıdır. Önemli değişiklikleri bu sayfa üzerinden duyuracağız.</p>
+    </div>
+
+    <div class="lang-en">
+      <p>By using services provided by Orbis Studio, you agree to the following terms.</p>
+      
+      <h2>1. Use of Service</h2>
+      <p>You agree to use our applications for lawful purposes only. You must not engage in any activity that disrupts or interferes with our services.</p>
+      
+      <h2>2. Subscriptions & Payments</h2>
+      <p>Payments for premium features are processed via Google Play or Apple App Store. Refunds and cancellations are subject to their respective policies.</p>
+      
+      <h2>3. Limitation of Liability</h2>
+      <p>Our services are provided "as is". Orbis Studio shall not be liable for any indirect damages arising from the use of the application.</p>
+      
+      <h2>4. Changes to Terms</h2>
+      <p>We reserve the right to update these terms from time to time. We will notify you of any major changes by updating this page.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p class="lang-tr">© 2025 Orbis Studio. Tüm hakları saklıdır.</p>
+    <p class="lang-en">© 2025 Orbis Studio. All rights reserved.</p>
+    <div style="display: flex; gap: 32px; justify-content: center; margin-top: 16px;">
+      <a href="privacy.html" class="lang-tr">Gizlilik Politikası</a>
+      <a href="privacy.html" class="lang-en">Privacy Policy</a>
+      <a href="terms.html" class="lang-tr">Kullanım Şartları</a>
+      <a href="terms.html" class="lang-en">Terms of Service</a>
+      <a href="support.html" class="lang-tr">Destek</a>
+      <a href="support.html" class="lang-en">Support</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('btn-' + lang).classList.add('active');
+    localStorage.setItem('preferred-lang', lang);
+  }
+  const savedLang = localStorage.getItem('preferred-lang') || 'tr';
+  setLang(savedLang);
+</script>
+</body>
+</html>
