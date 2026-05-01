@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luniva — Bebeğiniz İçin Huzurlu Uyku</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #050508;
+        --bg-alt: #0d0d12;
+        --surface: #121218;
+        --border: rgba(255, 255, 255, 0.06);
+        --text: #e8e2d6;
+        --muted: #8a8891;
+        --accent: #d4af37;
+        --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        font-weight: 300;
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Background Effects */
+      .bg-blobs {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .blob {
+        position: absolute;
+        width: 60vw;
+        height: 60vw;
+        filter: blur(100px);
+        border-radius: 50%;
+        opacity: 0.15;
+      }
+      .blob-1 {
+        top: -20%;
+        left: -10%;
+        background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+      }
+      .blob-2 {
+        bottom: -20%;
+        right: -10%;
+        background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* Hero */
+      header {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 100px 0;
+      }
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(48px, 8vw, 88px);
+        font-weight: 400;
+        line-height: 1.1;
+        margin-bottom: 32px;
+      }
+      h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .tagline {
+        font-size: 18px;
+        color: var(--muted);
+        max-width: 600px;
+        margin: 0 auto 48px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 16px 32px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: var(--transition);
+        border: 1px solid var(--border);
+        color: var(--text) !important; /* Fix for visited link color */
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: var(--bg) !important;
+        border: none;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
+      }
+
+      /* Image Section */
+      .app-logo {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 30px;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      }
+      .app-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Features */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 32px;
+        padding: 100px 0;
+      }
+      .feature-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 48px;
+        transition: var(--transition);
+      }
+      .feature-card:hover {
+        border-color: rgba(212, 175, 55, 0.3);
+        transform: translateY(-4px);
+      }
+      .feature-icon {
+        font-size: 32px;
+        margin-bottom: 24px;
+        color: var(--accent);
+      }
+      .feature-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 24px;
+        margin-bottom: 16px;
+        font-weight: 400;
+      }
+      .feature-card p {
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      /* Footer */
+      footer {
+        padding: 80px 0;
+        border-top: 1px solid var(--border);
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        margin-bottom: 32px;
+      }
+      .footer-links a {
+        color: var(--text);
+        text-decoration: none;
+        transition: var(--transition);
+        opacity: 0.6;
+      }
+      .footer-links a:hover {
+        color: var(--accent);
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+      <header>
+        <div class="hero-content">
+          <div class="app-logo">
+            <img src="../icon.png" alt="Luniva Logo">
+          </div>
+          <span
+            style="
+              font-size: 12px;
+              letter-spacing: 0.2em;
+              text-transform: uppercase;
+              color: var(--accent);
+              margin-bottom: 24px;
+              display: block;
+            "
+            >LUNIVA BY ORBIS STUDIO</span
+          >
+          <h1><em>Huzurlu</em> geceler,<br />mutlu bebekler.</h1>
+          <p class="tagline">
+            Bebeğiniz için özenle tasarlanmış uyku arkadaşı. Uzman onaylı
+            ninniler ve size özel ses kayıtları ile uyku vakti artık daha sakin.
+          </p>
+          <div style="display: flex; gap: 16px; justify-content: center">
+            <a href="#" class="btn btn-primary">Google Play'den İndir</a>
+            <a href="support.html" class="btn">Destek Al</a>
+          </div>
+        </div>
+      </header>
+
+      <section class="features">
+        <div class="feature-card">
+          <div class="feature-icon">✧</div>
+          <h3>Uzman Sesler</h3>
+          <p>
+            Bebeklerin uyku döngülerini destekleyen frekanslarda hazırlanmış
+            özel ambiyanslar.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✧</div>
+          <h3>Sizin Sesiniz</h3>
+          <p>
+            Siz yanında olmasanız bile bebeğiniz sizin sesinizle huzur içinde
+            uyumaya devam etsin.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✧</div>
+          <h3>Çevrimdışı Özgürlük</h3>
+          <p>
+            Uçak modunda veya internetin olmadığı yerlerde bile tüm kütüphaneye
+            kesintisiz erişim.
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-links">
+          <a href="index.html">Anasayfa</a>
+          <a href="privacy.html">Gizlilik</a>
+          <a href="terms.html">Şartlar</a>
+          <a href="support.html">Destek</a>
+          <a href="../index.html">Orbis Studio</a>
+        </div>
+        <p>© 2026 Orbis Studio. Tüm hakları saklıdır.</p>
+      </footer>
+    </div>
+  </body>
+</html>
